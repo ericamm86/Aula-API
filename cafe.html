@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotos de Café ☕</title>
+</head>
+<body>
+
+  <h1>Imagens aleatórias de Café ☕</h1>
+  <button id="novo">Gerar novo café</button>
+  <div id="galeria"></div>
+
+  <script>
+    async function buscarCafe() {
+      const galeria = document.getElementById("galeria");
+      galeria.innerHTML = ""; // limpa antes de mostrar novo café
+
+      // A URL agora retorna uma imagem direta (sem CORS)
+      const img = document.createElement("img");
+      img.src = "https://coffee.alexflipnote.dev/random?t=" + new Date().getTime(); // o parâmetro evita cache
+      img.alt = "Foto de café ☕";
+      img.style.width = "300px";
+      img.style.borderRadius = "10px";
+      img.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+      img.style.marginTop = "20px";
+      galeria.appendChild(img);
+
+      console.log("Nova imagem de café gerada:", img.src);
+    }
+
+    // Botão para gerar nova imagem
+    document.getElementById("novo").addEventListener("click", buscarCafe);
+
+    // Mostra uma imagem ao carregar
+    buscarCafe();
+  </script>
+
+</body>
+</html>
